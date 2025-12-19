@@ -1,0 +1,45 @@
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 120px);
+    gap: 10px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.calendar-header {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+}
+
+.day {
+    padding: 20px;
+    border: 2px solid #ccc;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.2s;
+    height: 76px;
+}
+
+.day:hover {
+    background-color: #ccc;
+    font-weight: bold;
+    transform: scale(1.05);
+    cursor: pointer;
+    user-select: none;
+}
+
+.is-today {
+    background-color: #ffd700;
+    font-weight: bold;
+    border: 2px solid #ffa500;
+}
+
+.is-today:hover {
+    transform: scale(1.1);
+    background-color: #ffa500;
+}

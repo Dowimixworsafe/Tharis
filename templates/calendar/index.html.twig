@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% set days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] %}
+
+    <div class="calendar-grid">
+        {% for day in days %}
+            <div class="calendar-header">
+                {{ day|trans }}
+            </div>
+        {% endfor %}
+        {% if startDayOfWeek != 1 %}
+            {% for i in 1..(startDayOfWeek - 1) %}
+                <div class="day empty"></div>
+            {% endfor %}            
+        {% endif %}
+        {% for i in 1..(daysInMonth) %}
+            <div class="day{% if loop.index == currentDay %} is-today{% endif %}">
+                {{ loop.index }}
+            </div>
+        {% endfor %}
+        {% set fillRestDays = (7 - (((startDayOfWeek - 1) + daysInMonth) % 7)) %}
+        {% if fillRestDays % 7 != 0 %}
+            {% for i in 1 ..(fillRestDays) %}
+                <div class="day empty"></div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
