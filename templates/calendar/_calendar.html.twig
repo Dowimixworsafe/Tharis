@@ -1,0 +1,39 @@
+<div class="calendar-wrap">
+    <h2>{{ calendar.monthName|trans|capitalize }} {{ calendar.year }}</h2>
+    <div class="calendar">
+        <div class="calendar-nav">
+            <a href="{{ path('app_calendar', {'year': calendar.prevYear, 'month': calendar.prevMonth}) }}" class="ajax-link" data-target="#calendar-container"><i class="fa-solid fa-angle-left"></i></a>
+        </div>
+        <div class="calendar-grid">
+            {% set days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] %}
+            {% for day in days %}
+                <div class="calendar-header">
+                    {{ day|trans }}
+                </div>
+            {% endfor %}
+            {% if calendar.leadingEmptyDays > 0 %}
+                {% for i in 1..calendar.leadingEmptyDays %}
+                    <div class="day empty"></div>
+                {% endfor %}
+            {% endif %}
+            {% for i in 1..calendar.daysInMonth %}
+                <div class="day{% if loop.index == calendar.currentDay %} is-today{% endif %}">
+                    {{ loop.index }}
+                </div>
+            {% endfor %}
+            {% if calendar.fillRestDays > 0 %}
+                {% for i in 1..calendar.fillRestDays %}
+                    <div class="day empty"></div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="calendar-nav">
+            <a href="{{ path('app_calendar', {'year': calendar.nextYear, 'month': calendar.nextMonth}) }}" class="ajax-link" data-target="#calendar-container"><i class="fa-solid fa-angle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/loadPageContent.js') }}"></script>
+{% endblock %}
