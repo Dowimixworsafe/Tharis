@@ -1,0 +1,45 @@
+{% block stylesheets %}
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+{% endblock %}
+
+<aside class="sidebar">
+    <header>
+        <button type="button" >
+            <i class="fa-solid fa-bars"></i>
+        </button> 
+        {# <img src="logo.svg" /> #}
+        <div>Logo</div>
+    </header>
+    <ul>
+        <li>
+            <button type="button" class="ajax-link" data-url="{{ path('app_home') }}" data-target="#main-content"> 
+                <i class="fa-solid fa-house"></i>
+                <p>Home</p> 
+            </button>
+        </li>
+        <li>
+            <button type="button" class="ajax-link" data-url="{{ path('app_calendar') }}" data-target="#main-content"> 
+                <i class="fa-solid fa-calendar"></i>
+                <p>Kalendarz</p> 
+            </button>
+        </li>
+        <li>
+            <button type="button"> 
+                <i class="fa-solid fa-calendar"></i>
+                <p>Coś</p>
+                <i class="fa-solid fa-angle-down"></i>
+            </button>
+            <div class="sub-menu">
+                <ul>
+                    <li>
+                        <button type="button" class="ajax-link">coś</button>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</aside>
+
+{% block javascript %}
+    <script src='{{ asset("js/partials/sidebar.js") }}'></script>
+{% endblock %}
